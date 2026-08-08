@@ -17,10 +17,10 @@
 <p align="center">
   <a href="#about">About</a> •
   <a href="#features">Features</a> •
-  <a href="#quick-start">Quick Start</a> •
+  <a href="#install">Install</a> •
   <a href="#examples">Examples</a> •
+  <a href="#docs">Docs</a> •
   <a href="#roadmap">Roadmap</a> •
-  <a href="#language-spec">Language Spec</a> •
   <a href="#contributing">Contributing</a>
 </p>
 
@@ -30,7 +30,7 @@
 
 **KOVΛ** is a brand-new programming language built entirely from scratch by **Nguyễn Khôi**.
 
-Every keyword is original — KOVΛ doesn't borrow syntax from any existing language. With **37 unique keywords**, a complete interpreter, and a rich standard library, KOVΛ is ready to use.
+Every keyword is original — KOVΛ doesn't borrow syntax from any existing language. With **37 unique keywords**, a complete interpreter (3000+ lines), and a rich standard library, KOVΛ is ready to use.
 
 - 🧠 **Clarity** — Clean, readable syntax that makes intent obvious
 - ⚡ **Performance** — Fast interpretation, smooth execution
@@ -44,7 +44,6 @@ Every keyword is original — KOVΛ doesn't borrow syntax from any existing lang
 |---|---|
 | 🎯 Original Syntax | 37 unique keywords — `grab`, `forge`, `spin`, `morph`, `shape`, `evolve` |
 | 🔄 Interpreter | Full Python-based interpreter (3000+ lines) |
-| 📦 Auto Import | `pull` modules with circular import protection |
 | 🧩 Data Types | Numbers, strings, booleans (`yes`/`no`), arrays, maps, `void` |
 | 🎨 Variables | `grab` (mutable) / `lock` (immutable constants) |
 | 🔨 Functions | `forge` to define, `yield` to return, closures, lambdas |
@@ -53,35 +52,52 @@ Every keyword is original — KOVΛ doesn't borrow syntax from any existing lang
 | 🧬 OOP | `shape` (class) / `evolve` (inherit) / `self` / `parent` |
 | 🎭 Pattern Match | `morph` with default arm `_` |
 | 🛡️ Error Handling | `attempt` / `rescue` / `eject` |
+| 📦 Modules | `pull` (import) / `expose` (export) |
 | 🔗 Pipe Operator | `value |> func1 |> func2` |
 | ⏳ Defer | `defer { ... }` — cleanup at scope exit |
-| 📝 String Methods | `.crush()` `.rise()` `.trim()` `.split()` `.has()` `.swap()` and more |
-| 📋 Array Methods | `.map()` `.sift()` `.fold()` `.sort()` `.flip()` `.push()` `.pop()` and more |
-| 🖥️ Interactive REPL | Colored prompt, multi-line support, command history |
-| 🛡️ Security | Recursion limit, loop guards, sandboxed file I/O |
-| 📚 45+ Built-ins | I/O, math, strings, arrays, files, functional, system |
+| 📝 Methods | String & array dot-notation methods |
+| 🖥️ REPL | Colored prompt, multi-line, command history |
+| 📚 45+ Built-ins | I/O, math, strings, arrays, files, system |
 
-## Quick Start
+## Install
 
 ```bash
-# Clone the repo
+# Clone
 git clone https://github.com/phonmasverical/KOVA.git
 cd KOVA
 
-# Run a program
-python kova.py hello.kv
+# Install kovarun command
+bash install.sh
 
-# Launch interactive REPL
-python kova.py
-
-# Show version
-python kova.py --version
+# Or run directly
+python3 kovarun hello.kva
 ```
+
+### Termux (Android)
+```bash
+pkg update && pkg upgrade
+pkg install git python
+git clone https://github.com/phonmasverical/KOVA.git
+cd KOVA
+bash install.sh
+```
+
+### Usage
+```bash
+kovarun hello.kva          # Run a .kva file
+kovarun                    # Launch REPL
+kovarun --version          # Show version
+kovarun --help             # Show help
+nano hello.kva             # Create new file
+```
+
+**File extension:** `.kva`
 
 ## Examples
 
 ### Hello World
 ```
+-- hello.kva
 emit("Hello, World! 🌍")
 ```
 
@@ -101,7 +117,6 @@ forge factorial(n) {
 emit("5! = " + cast(factorial(5), "string"))
 
 grab double = |x| => x * 2
-emit(cast(double(21), "string"))
 ```
 
 ### Conditionals
@@ -120,14 +135,11 @@ test score >= 90 {
 ```
 spin i from 1 to 5 { emit(i) }
 
-grab colors = ["red", "green", "blue"]
-spin c in colors { emit(c) }
-
-grab x = 0
-orbit x < 10 { grab x = x + 1 }
+grab fruits = ["apple", "banana", "cherry"]
+spin f in fruits { emit(f) }
 ```
 
-### OOP — Shapes & Evolve
+### OOP
 ```
 shape Animal {
   forge init(name, sound) {
@@ -140,9 +152,7 @@ shape Animal {
 }
 
 evolve Dog from Animal {
-  forge init(name) {
-    parent.init(name, "Woof!")
-  }
+  forge init(name) { parent.init(name, "Woof!") }
 }
 
 grab dog = Dog("Rex")
@@ -167,20 +177,16 @@ attempt {
 }
 ```
 
-### Array Methods & Functional
-```
-grab nums = [1, 2, 3, 4, 5]
-grab result = nums.sift(|x| => x % 2 == 0).map(|x| => x * 10)
-emit(cast(result, "string"))
-```
+> 📂 See all 9 examples: `hello.kva` `variables.kva` `functions.kva` `loops.kva` `oop.kva` `pattern_matching.kva` `error_handling.kva` `advanced.kva` `calculator.kva`
 
-> 📂 See all 9 example programs: `hello.kv`, `variables.kv`, `functions.kv`, `loops.kv`, `oop.kv`, `pattern_matching.kv`, `error_handling.kv`, `advanced.kv`, `calculator.kv`
+## Docs
 
-## Language Spec
+| Document | Description |
+|---|---|
+| 📖 **[USAGE.md](USAGE.md)** | Complete usage guide — all functions, methods, syntax, examples |
+| 📜 **[language-spec.md](language-spec.md)** | Full language specification — 37 keywords, grammar, semantics |
 
-📖 Full specification: **[language-spec.md](language-spec.md)** — covers all 37 keywords, data types, operators, control flow, OOP, modules, built-in functions, and more.
-
-### All 37 KOVΛ Keywords
+### Quick Keyword Reference
 
 | Keyword | Purpose | Keyword | Purpose |
 |---|---|---|---|
@@ -190,27 +196,25 @@ emit(cast(result, "string"))
 | `rival` | else | `spin` | for loop |
 | `orbit` | while loop | `snap` | break |
 | `skip` | continue | `shape` | class |
-| `evolve` | inherit | `self` | this |
-| `parent` | super | `attempt` | try |
-| `rescue` | catch | `eject` | throw |
-| `pull` | import | `expose` | export |
-| `morph` | match/switch | `defer` | scope cleanup |
-| `yes` | true | `no` | false |
-| `void` | null | `and` / `or` / `not` | logic |
+| `evolve` | inherit | `morph` | match/switch |
+| `attempt` | try | `rescue` | catch |
+| `eject` | throw | `pull` | import |
+| `expose` | export | `defer` | scope cleanup |
+| `yes` / `no` | true / false | `void` | null |
 
 ## Roadmap
 
 - [x] Design language syntax & 37 unique keywords
 - [x] Create GitHub repository
-- [x] Write Language Specification v1.0
-- [x] Build lexer (tokenizer)
-- [x] Build parser (AST generator)
-- [x] Build interpreter (3000+ lines)
+- [x] Language Specification v1.0
+- [x] Lexer + Parser + Interpreter (3000+ lines)
 - [x] 45+ built-in functions
 - [x] String & array dot-notation methods
 - [x] Interactive REPL
-- [x] 9 example programs
-- [x] Security features (recursion/loop limits, sandboxed I/O)
+- [x] 9 example programs (.kva)
+- [x] Security features
+- [x] Usage documentation (USAGE.md)
+- [x] Installer (install.sh + kovarun)
 - [ ] Package manager
 - [ ] Documentation website
 - [ ] VS Code extension
@@ -220,9 +224,9 @@ emit(cast(result, "string"))
 KOVΛ is open source. All contributions are welcome!
 
 1. Fork the repo
-2. Create a new branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
+2. Create a branch (`git checkout -b feature/new-feature`)
+3. Commit (`git commit -m 'Add feature'`)
+4. Push (`git push origin feature/new-feature`)
 5. Open a Pull Request
 
 ## Author
