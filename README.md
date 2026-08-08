@@ -15,105 +15,208 @@
 </p>
 
 <p align="center">
-  <a href="#giới-thiệu">Giới thiệu</a> •
-  <a href="#tính-năng">Tính năng</a> •
-  <a href="#cài-đặt">Cài đặt</a> •
-  <a href="#ví-dụ">Ví dụ</a> •
-  <a href="#lộ-trình">Lộ trình</a> •
-  <a href="#đóng-góp">Đóng góp</a>
+  <a href="#about">About</a> •
+  <a href="#features">Features</a> •
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#examples">Examples</a> •
+  <a href="#roadmap">Roadmap</a> •
+  <a href="#language-spec">Language Spec</a> •
+  <a href="#contributing">Contributing</a>
 </p>
 
 ---
 
-## Giới thiệu
+## About
 
-**KOVΛ** là ngôn ngữ lập trình hoàn toàn mới, được tạo ra từ đầu bởi **phonmasverical**.
+**KOVΛ** is a brand-new programming language built entirely from scratch by **phonmasverical**.
 
-KOVΛ được thiết kế với triết lý:
-- 🧠 **Đơn giản** — Cú pháp sạch, dễ đọc, dễ học
-- ⚡ **Hiệu suất** — Biên dịch nhanh, chạy mượt
-- 🔧 **Linh hoạt** — Đa năng: web, app, game, AI
-- 🌍 **Mở** — Mã nguồn mở, cộng đồng đóng góp
+Every keyword is original — KOVΛ doesn't borrow syntax from any existing language.
 
-## Tính năng
+- 🧠 **Clarity** — Clean, readable syntax that makes intent obvious
+- ⚡ **Performance** — Fast compilation, smooth execution
+- 🔧 **Versatile** — General purpose: web, apps, games, AI
+- 🌍 **Open** — Open source, community driven
 
-| Tính năng | Mô tả |
+## Features
+
+| Feature | Description |
 |---|---|
-| 🎯 Cú pháp riêng | Thiết kế hoàn toàn mới, không giống bất kỳ ngôn ngữ nào |
-| 🔄 Interpreter | Trình thông dịch viết bằng Python |
-| 📦 Import tự động | AI trợ thủ hỗ trợ import thư viện tự động |
-| 🧩 Kiểu dữ liệu | Số, chuỗi, danh sách, từ điển, hàm, đối tượng |
-| 🎨 Biến & Hàm | Khai báo biến, tạo hàm, đệ quy |
-| 🔁 Vòng lặp | for, while, loop |
-| 🔀 Điều kiện | if/else, match |
-| 📝 I/O | Đọc/ghi file, input/output |
-| 🌐 Module | Hệ thống module import/export |
+| 🎯 Original Syntax | Completely new keywords — `grab`, `forge`, `spin`, `morph` |
+| 🔄 Interpreter | Python-based interpreter |
+| 📦 Auto Import | AI assistant for automatic library imports |
+| 🧩 Data Types | Numbers, strings, booleans (`yes`/`no`), arrays, maps, `void` |
+| 🎨 Variables | `grab` (mutable) / `lock` (immutable) |
+| 🔨 Functions | `forge` to define, `yield` to return, lambda support |
+| 🔁 Loops | `spin` (for) / `orbit` (while) / `snap` & `skip` |
+| 🔀 Conditionals | `test` / `also` / `rival` |
+| 🧬 OOP | `shape` (class) / `evolve` (inherit) |
+| 🎭 Pattern Match | `morph` with guards and destructuring |
+| 🛡️ Error Handling | `attempt` / `rescue` / `eject` |
+| 📦 Modules | `pull` (import) / `expose` (export) |
+| 🔗 Pipe Operator | `value |> func1 |> func2` |
+| ⏳ Defer | `defer { ... }` — cleanup at scope exit |
 
-## Cài đặt
+## Quick Start
 
 ```bash
-# Clone repo
+# Clone the repo
 git clone https://github.com/phonmasverical/KOVA.git
 cd KOVA
 
-# Chạy interpreter
-python kova.py your_file.kv
+# Run a KOVΛ program
+python kova.py hello.kv
 ```
 
-## Ví dụ
+## Examples
 
+### Hello World
 ```
-// Hello World trong KOVΛ
-in("Xin chào thế giới! 🌍")
-
-// Biến
-x = 42
-tên = "KOVΛ"
-
-// Hàm
-hàm chào(tên) {
-  in("Chào " + tên + "!")
-}
-
-chào("bro")
-
-// Vòng lặp
-lặp i từ 1 đến 10 {
-  in(i)
-}
-
-// Điều kiện
-nếu x > 10 {
-  in("Lớn")
-} không_thì {
-  in("Nhỏ")
-}
+emit("Hello, World!")
 ```
 
-## Lộ trình
+### Variables & Constants
+```
+grab name = "KOVΛ"
+grab age = 1
+lock VERSION = "1.0.0"
 
-- [x] Thiết kế cú pháp
-- [x] Tạo repo GitHub
-- [ ] Viết lexer (phân tích từ vựng)
-- [ ] Viết parser (phân tích cú pháp)
-- [ ] Viết interpreter (trình thông dịch)
-- [ ] Hệ thống module
-- [ ] AI trợ thủ import tự động
-- [ ] Tài liệu hướng dẫn
-- [ ] Website chính thức
-- [ ] Extension cho VS Code
+emit("Welcome to {name} v{VERSION}")
+```
 
-## Đóng góp
+### Functions
+```
+forge greet(name) {
+  yield "Hello, " + name + "!"
+}
 
-KOVΛ là dự án mã nguồn mở. Mọi đóng góp đều được hoan nghênh!
+grab message = greet("bro")
+emit(message)
+```
 
-1. Fork repo
-2. Tạo branch mới (`git checkout -b feature/tinh-nang-moi`)
-3. Commit thay đổi (`git commit -m 'Thêm tính năng mới'`)
-4. Push lên branch (`git push origin feature/tinh-nang-moi`)
-5. Tạo Pull Request
+### Conditionals
+```
+grab score = 85
 
-## Tác giả
+test score >= 90 {
+  emit("Excellent!")
+} also score >= 70 {
+  emit("Good job!")
+} rival {
+  emit("Keep trying!")
+}
+```
+
+### Loops
+```
+-- Counted loop
+spin i from 1 to 10 {
+  emit(i)
+}
+
+-- Collection loop
+grab colors = ["red", "green", "blue"]
+spin color in colors {
+  emit(color)
+}
+
+-- While loop
+grab x = 0
+orbit x < 100 {
+  grab x = x + 1
+}
+```
+
+### OOP
+```
+shape Animal {
+  forge init(name, sound) {
+    self.name = name
+    self.sound = sound
+  }
+
+  forge speak() {
+    emit(self.name + " says " + self.sound)
+  }
+}
+
+evolve Dog from Animal {
+  forge init(name) {
+    parent.init(name, "Woof!")
+  }
+
+  forge fetch(item) {
+    emit(self.name + " fetches the " + item)
+  }
+}
+
+grab dog = Dog("Rex")
+dog.speak()
+dog.fetch("ball")
+```
+
+### Pattern Matching
+```
+grab status = 404
+
+morph status {
+  200 => emit("OK")
+  404 => emit("Not Found")
+  500 => emit("Server Error")
+  _ => emit("Unknown: {status}")
+}
+```
+
+### Pipe Operator
+```
+grab result = [1, 2, 3, 4, 5]
+  |> arr.map(|x| => x * 2)
+  |> arr.sift(|x| => x > 4)
+  |> arr.fold(0, |acc, x| => acc + x)
+
+emit(result)
+```
+
+### Error Handling
+```
+attempt {
+  grab data = read("config.kv")
+  emit(data)
+} rescue err {
+  emit("Error: {err}")
+}
+```
+
+## Language Spec
+
+📖 Full language specification: **[language-spec.md](language-spec.md)**
+
+The spec covers all 37 unique KOVΛ keywords, data types, operators, control flow, OOP, modules, built-in functions, and more.
+
+## Roadmap
+
+- [x] Design language syntax & keywords
+- [x] Create GitHub repository
+- [x] Write Language Specification v1.0
+- [ ] Build lexer (tokenizer)
+- [ ] Build parser (AST generator)
+- [ ] Build interpreter
+- [ ] Standard library
+- [ ] REPL (interactive mode)
+- [ ] Package manager
+- [ ] Documentation website
+- [ ] VS Code extension
+
+## Contributing
+
+KOVΛ is open source. All contributions are welcome!
+
+1. Fork the repo
+2. Create a new branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
+
+## Author
 
 **phonmasverical** — Creator & Lead Developer
 
