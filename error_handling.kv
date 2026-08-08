@@ -1,0 +1,17 @@
+-- Error Handling in KOVA
+
+forge divide(a, b) {
+  test b == 0 {
+    eject "Division by zero!"
+  }
+  yield a / b
+}
+
+attempt {
+  emit("10 / 2 = " + cast(divide(10, 2), "string"))
+  emit("10 / 0 = " + cast(divide(10, 0), "string"))
+} rescue err {
+  emit("Error caught: " + err)
+}
+
+emit("Program continues after error handling!")

@@ -1,0 +1,53 @@
+-- Object-Oriented Programming in KOVA
+
+shape Animal {
+  forge init(name, sound) {
+    self.name = name
+    self.sound = sound
+  }
+
+  forge speak() {
+    emit(self.name + " says: " + self.sound)
+  }
+
+  forge info() {
+    yield "Animal: " + self.name
+  }
+}
+
+evolve Dog from Animal {
+  forge init(name, breed) {
+    parent.init(name, "Woof!")
+    self.breed = breed
+  }
+
+  forge fetch(item) {
+    emit(self.name + " fetches the " + item + "!")
+  }
+
+  forge info() {
+    yield parent.info() + " (Breed: " + self.breed + ")"
+  }
+}
+
+evolve Cat from Animal {
+  forge init(name) {
+    parent.init(name, "Meow!")
+  }
+
+  forge purr() {
+    emit(self.name + " is purring...")
+  }
+}
+
+-- Create instances
+grab dog = Dog("Rex", "German Shepherd")
+grab cat = Cat("Whiskers")
+
+dog.speak()
+dog.fetch("ball")
+emit(dog.info())
+
+cat.speak()
+cat.purr()
+emit(cat.info())

@@ -1,0 +1,45 @@
+-- Advanced KOVA Features
+
+-- Using array methods
+grab numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+grab evens = numbers.sift(|x| => x % 2 == 0)
+grab doubled = evens.map(|x| => x * 2)
+grab total = doubled.fold(0, |acc, x| => acc + x)
+
+emit("Numbers: " + cast(numbers, "string"))
+emit("Evens: " + cast(evens, "string"))
+emit("Doubled: " + cast(doubled, "string"))
+emit("Total: " + cast(total, "string"))
+
+-- String methods
+grab message = "  Hello KOVA World!  "
+emit("Original: '" + message + "'")
+emit("Trimmed: '" + message.trim() + "'")
+emit("Lower: '" + message.trim().crush() + "'")
+emit("Upper: '" + message.trim().rise() + "'")
+emit("Has 'KOVA': " + cast(message.has("KOVA"), "string"))
+
+-- Maps
+grab config = {
+  "name": "KOVA",
+  "version": "1.0.0",
+  "author": "Nguyen Khoi"
+}
+
+emit("Config keys: " + cast(keys(config), "string"))
+spin key in keys(config) {
+  emit("  " + key + ": " + config[key])
+}
+
+-- Defer
+forge process_data() {
+  emit("Starting process...")
+  defer {
+    emit("Cleanup complete!")
+  }
+  emit("Processing data...")
+  emit("Data processed!")
+}
+
+process_data()

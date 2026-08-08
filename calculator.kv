@@ -1,0 +1,40 @@
+-- Simple Calculator in KOVA
+-- Demonstrates a practical program
+
+forge calculate(a, op, b) {
+  morph op {
+    "+" => yield a + b
+    "-" => yield a - b
+    "*" => yield a * b
+    "/" => {
+      test b == 0 {
+        eject "Cannot divide by zero"
+      }
+      yield a / b
+    }
+    "**" => yield a ** b
+    "%" => yield a % b
+    _ => eject "Unknown operator: " + op
+  }
+}
+
+emit("=== KOVA Calculator ===")
+emit("")
+
+grab operations = [
+  [10, "+", 5],
+  [10, "-", 3],
+  [6, "*", 7],
+  [20, "/", 4],
+  [2, "**", 8],
+  [17, "%", 5]
+]
+
+spin op in operations {
+  attempt {
+    grab result = calculate(op[0], op[1], op[2])
+    emit(cast(op[0], "string") + " " + op[1] + " " + cast(op[2], "string") + " = " + cast(result, "string"))
+  } rescue err {
+    emit("Error: " + err)
+  }
+}
