@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+KOVΛ — code. create. evolve.
+
+CLI entry point for the KOVΛ programming language interpreter.
+
+Usage:
+    kovarun                      Launch interactive REPL
+    kovarun <file.kva>           Run a .kva source file
+    kovarun --version            Show version information
+    kovarun --help               Show help
+
+Author : Nguyễn Khôi
+Version: 1.0.0
+License: MIT
+"""
+
+import sys
+import os
+
+# Ensure the directory containing this script is on the path so kova_core can
+# be imported regardless of where the user invokes the command from.
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
+
+from kova_core import (
+    KOVA_VERSION,
+    KOVA_AUTHOR,
+    run_file,
+    run_repl,
+)
+
+HELP_TEXT = f"""\
+╔══════════════════════════════════════════════╗
+║       KOVΛ Programming Language v{KOVA_VERSION}        ║
+║       Author: {KOVA_AUTHOR:<30s}║
+╚══════════════════════════════════════════════╝
+
+Usage:
+  kovarun                      Launch the interactive REPL
+  kovarun <file.kva>           Execute a KOVΛ source file
+  kovarun --version, -v        Print version and exit
+  kovarun --help, -h           Show this help message
+
+File extension: .kva
+
+Examples:
+  kovarun hello.kva            Run hello.kva
+  kovarun                      Start REPL session
+  nano hello.kva               Create a new KOVΛ file
+
+Quick start:
+  echo 'emit("Hello KOVΛ!")' > hello.kva
+  kovarun hello.kva
+
+For full documentation, see USAGE.md
+For language specification, see language-spec.md
+"""
+
+
+def main() -> None:
+    """CLI entry point."""
+    args = sys.argv[1:]
+
+    if not args:
+        # No arguments — launch REPL
+        run_repl()
+        return
+
+    first = args[0]
+
+    if first in ("--help", "-h"):
+        print(HELP_TEXT)
+        return
+
+    if first in ("--version", "-v"):
+        print(f"KOVΛ v{KOVA_VERSION}")
+        print(f"Author: {KOVA_AUTHOR}")
+        print(f"File extension: .kva")
+        return
+
+    # Treat the first argument as a file path
+    filepath = first
+
+    if not os.path.isfile(filepath):
+        print(f"\033[31mError: file not found: {filepath}\033[0m", file=sys.stderr)
+        sys.exit(1)
+
+    if not filepath.endswith('.kva'):
+        print(f"\033[33mWarning: KOVΛ files should use .kva extension\033[0m", file=sys.stderr)
+
+    run_file(filepath)
+
+
+if __name__ == "__main__":
+    main()
