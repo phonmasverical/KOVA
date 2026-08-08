@@ -1,0 +1,27 @@
+-- Functions in KOVA
+forge greet(name) {
+  yield "Hello, " + name + "!"
+}
+
+forge factorial(n) {
+  test n <= 1 {
+    yield 1
+  }
+  yield n * factorial(n - 1)
+}
+
+forge fibonacci(n) {
+  test n <= 0 { yield 0 }
+  test n == 1 { yield 1 }
+  yield fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+emit(greet("World"))
+emit("5! = " + cast(factorial(5), "string"))
+
+-- Lambda functions
+grab double = |x| => x * 2
+grab add = |a, b| => a + b
+
+emit("Double 5: " + cast(double(5), "string"))
+emit("3 + 4: " + cast(add(3, 4), "string"))

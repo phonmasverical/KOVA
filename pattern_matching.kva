@@ -1,0 +1,20 @@
+-- Pattern Matching in KOVA
+
+forge http_status(code) {
+  morph code {
+    200 => yield "OK"
+    201 => yield "Created"
+    301 => yield "Moved Permanently"
+    400 => yield "Bad Request"
+    401 => yield "Unauthorized"
+    403 => yield "Forbidden"
+    404 => yield "Not Found"
+    500 => yield "Internal Server Error"
+    _ => yield "Unknown Status: " + cast(code, "string")
+  }
+}
+
+grab codes = [200, 404, 500, 418]
+spin code in codes {
+  emit(cast(code, "string") + " -> " + http_status(code))
+}

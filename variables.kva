@@ -1,0 +1,12 @@
+-- Variables and Constants
+grab name = "KOVA"
+grab version = 1.0
+lock AUTHOR = "Nguyen Khoi"
+
+emit("Language: {name}")
+emit("Version: {version}")
+emit("Author: {AUTHOR}")
+
+-- Type checking
+emit("Type of name: " + kind(name))
+emit("Type of version: " + kind(version))

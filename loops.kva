@@ -1,0 +1,30 @@
+-- Loops in KOVA
+
+-- Spin (for) loop with range
+emit("Counting 1 to 5:")
+spin i from 1 to 5 {
+  emit("  " + cast(i, "string"))
+}
+
+-- Spin with collection
+grab fruits = ["apple", "banana", "cherry"]
+emit("Fruits:")
+spin fruit in fruits {
+  emit("  - " + fruit)
+}
+
+-- Orbit (while) loop
+grab count = 0
+orbit count < 5 {
+  grab count = count + 1
+}
+emit("Final count: " + cast(count, "string"))
+
+-- Snap (break) and Skip (continue)
+emit("Even numbers 1-10:")
+spin i from 1 to 10 {
+  test i % 2 != 0 {
+    skip
+  }
+  emit("  " + cast(i, "string"))
+}

@@ -1,0 +1,3 @@
+-- Hello World in KOVA
+emit("Hello, World! 🌍")
+emit("Welcome to KOVA — code. create. evolve.")
